@@ -1,21 +1,25 @@
-import csv
-from datetime import datetime 
+import csv#p142
+from datetime import datetime#p 
 
 import matplotlib.pyplot as plt
 
-filename = 'data/death_valley_2018_simple.csv'
+filename = 'data/death_valley_2018_simple.csv'#p141
 with open(filename) as f:
     reader = csv.reader(f)
     header_row = next(reader)
+
+
+    # for index, column_header in enumerate(header_row):#p141で最高気温と最低気温の位置が違うことを確認
+    #     print(index, column_header)
 
     #ファイルから日付、最高気温、最低気温を取得する
     dates, highs, lows = [], [], []
     for row in reader:
         current_date = datetime.strptime(row[2], '%Y-%m-%d')
-        try:
+        try:#p142で追加！！
             high = int(row[4])
             low = int(row[5])
-        except ValueError:
+        except ValueError:#p142で追加！！
             print(f"Missing data for {current_date}")
         else:
             dates.append(current_date)
